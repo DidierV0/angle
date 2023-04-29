@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('main')
-
-    @include('partials.form') 
     
+    @include('layouts.afficher')
+
 @endsection

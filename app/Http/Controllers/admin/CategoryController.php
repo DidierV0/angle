@@ -25,7 +25,7 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
     
-        $request->validate(['category'=>'required|min:5']);
+        $request->validate(['category'=>'required|min:3']);
         $category = new Category;
         $category->name =  $request->category;
         $category->icone = 'icone';
@@ -56,7 +56,7 @@ class CategoryController extends Controller
     public function edit(Request $request, $id = 0)
     {
         $category = Category::findOrFail($id);
-        $request->validate(['id'=>'required|min:5']);
+        $request->validate(['id'=>'required|min:3']);
 
         $category->name = $request->id;
         $category->icone = 'icone';
