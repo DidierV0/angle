@@ -15,7 +15,7 @@
         <nav class="bg-white bg-opacity-70 border-gray-200 dark:bg-gray-900">
             <div class="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">
                 <a href="{{route('bienvenue')}}" class="flex items-center">
-                    <span class="self-center text-4xl font-semibold border-2 rounded-full p-2 border-blue-700 whitespace-nowrap dark:text-white">Le Bon Angle</span>
+                    <span class="px-10 self-center text-3xl font-semibold border-2 rounded-full p-2 border-blue-700 whitespace-nowrap dark:text-white">Le Bon Angle</span>
                 </a>
                 <div class="flex items-center md:order-2">
 

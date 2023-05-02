@@ -22,8 +22,11 @@ use App\Http\Controllers\VisiteurControlleur;
 // Route::get('/bienven', function () {
 //     return view('visiteur.bienvenue');
 // });
-Route::get('visiteur/bienvenue', [VisiteurControlleur::class, 'index'])->name('bienvenue');
-Route::get('visiteur/annonce/{id}', [VisiteurControlleur::class, 'show'])->name('annonce');
+Route::get('public/bienvenue', [VisiteurControlleur::class, 'index'])->name('bienvenue');
+Route::get('public/annonce/{id}', [VisiteurControlleur::class, 'show'])->name('annonce');
+
+Route::get('public/bienvenue/trier/{id}', [VisiteurControlleur::class, 'index'])->name('trier');
+
 
 // Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 // Route::get('/admin', function () {
@@ -47,6 +50,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/modifier/edit/{id}', [ConnecteController::class, 'edit'])->name('modifier.edit');
     Route::post('/modifier/upp/{id}', [ConnecteController::class, 'update'])->name('modifier.upp');
+
+    Route::get('/annonce/del{id}', [ConnecteController::class, 'destroy'])->name('annonce.del');
+    Route::get('/annonce/afficher{id}', [ConnecteController::class, 'show'])->name('annonce.aff');
 
 });
 

@@ -1,5 +1,5 @@
 <form 
-action="{{!empty($annonce)?route('admin.annonce.upp', $annonce->id):route('ajouter.store')}}" method="post" enctype="multipart/form-data">
+action="{{!empty($annonce)?route('modifier.upp', $annonce->id):route('ajouter.store')}}" method="post" enctype="multipart/form-data">
     @csrf
         <label for="formTitre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Titre de l'annonce</label>
         <input type="text" name="formTitre" 

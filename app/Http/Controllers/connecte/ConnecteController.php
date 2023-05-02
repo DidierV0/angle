@@ -7,6 +7,7 @@ use App\Models\category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ConnecteController extends Controller
 {
@@ -63,17 +64,23 @@ class ConnecteController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id = 0)
     {
-        //
+        $category = category::all();
+        $annonce = annonce::findOrFail($id);
+
+        return view('visiteur.afficher', compact('category', 'annonce'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit($id = 0)
     {
-        //
+        $category = category::all();
+        $annonce = Annonce::findOrFail($id);
+
+        return view('connecte.ajouter', compact('category', 'annonce'));
     }
 
     /**
@@ -81,14 +88,41 @@ class ConnecteController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $annonce = Annonce::findOrFail($id) ;
+
+        $request->validate(['formTitre'=>'required|min:5']);
+        
+        if ($request->file()) {
+            
+            if($annonce->image!= ''){
+                Storage::delete($annonce->image);
+            }
+
+            $fileName = $request->formImage->store('public/images');
+            $annonce->image = $fileName;            
+        }
+
+        $annonce->description = $request->formDescription;
+
+        $request->validate(['formCategory' =>'required|max:3']);
+        $annonce->category_id = $request->formCategory;
+
+        $annonce->prix = $request->formPrice;
+
+        $annonce->update();
+
+        return redirect(route('compte'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id = 0)
     {
-        //
+        $annonce = Annonce::findOrFail($id);
+        $annonce->delete();
+
+        return redirect('compte');
+
     }
 }
